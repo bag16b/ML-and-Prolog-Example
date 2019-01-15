@@ -1,0 +1,23 @@
+Pair-Off: Given a pair of lists, return a list of pairs.  Details: Given a pair of lists (A & B) of equal length, return a list (C) of pairs. List C will be of the same length of lists A & B, but will contain pairs. Each pair will consist of a member from list A and a member from list B. 
+
+
+- fun PairOff(nil, nil) = nil | PairOff(take1::a, take2::b) = let val c = PairOff(a,b) in (take1,take2)::c end;
+stdIn:1.6-1.110 Warning: match nonexhaustive
+          (nil,nil) => ...
+          (take1 :: a,take2 :: b) => ...
+  
+val PairOff = fn : 'a list * 'b list -> ('a * 'b) list
+- PairOff([1,2,3],[4,5,6]);
+val it = [(1,4),(2,5),(3,6)] : (int * int) list
+- PairOff([5,3,8,21],[9,34,74,12]);
+val it = [(5,9),(3,34),(8,74),(21,12)] : (int * int) list
+
+-----------------------------------------------------------------------
+ Un-pair: The reverse of "Pair-Off". Given a list of pairs, return two lists in which the pairs are separated in to two separate lists. The first member of each pair is placed in the first list and the second member of each pair is placed in the second list.
+
+- fun UnPair(nil) = (nil,nil) | UnPair((take1,take2)::a) = let val(x,y) = UnPair(a) in (take1::x, take2::y) end;
+val UnPair = fn : ('a * 'b) list -> 'a list * 'b list
+- UnPair[(1,2),(7,4),(93,8),(6,12)];
+val it = ([1,7,93,6],[2,4,8,12]) : int list * int list
+- UnPair[(7,3),(733,82),(93,2332),(988,7379)];
+val it = ([7,733,93,988],[3,82,2332,7379]) : int list * int list
